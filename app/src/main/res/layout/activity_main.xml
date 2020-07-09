@@ -168,4 +168,16 @@
         app:layout_constraintTop_toBottomOf="@+id/button_7"
         tools:text="the winner" />
 
+    <TextView
+        android:id="@+id/gameTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="You are 'X'   Tap a square to play ..."
+        android:textColor="#AF0909"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/button_2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
