@@ -106,11 +106,9 @@ public class MainActivity extends AppCompatActivity {
                 return "u lost";
             }else if (playerPosition.size() + compPosition.size() == 9) {
                 return "cat";
-
             }
         }
         return "";
     }
-
  }
 
