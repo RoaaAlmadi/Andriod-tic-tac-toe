@@ -32,11 +32,11 @@ public class MainActivity extends AppCompatActivity {
                 {'-', '+', '-', '+', '-'},
                 {' ', '|', ' ', '|', ' '},
         };
-        printBordGame(bordGame);
+      /*  printBordGame(bordGame);
         playerMove();
         computerMove();
-        printBordGame(bordGame);
-
+        printBordGame(bordGame);*/
+      
 
     }
     private static void printBordGame(char [][] bordGame) {
