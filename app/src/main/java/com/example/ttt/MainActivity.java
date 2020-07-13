@@ -154,11 +154,20 @@ public class MainActivity extends AppCompatActivity {
                     countMinus++;
                 } else if (cellsB[winningMovesB.get(i)[j] - 1] == 0) {
                     nextCell = winningMovesB.get(i)[j] - 1;
-                } else if (cellsB[winningMovesB.get(i)[j] - 1] == -1) {
-                    countPlus++;
                 }
             }
-            if ((countPlus == 2 || countMinus == 2) && nextCell != -1) {
+            if ((countMinus == 2) && nextCell != -1) {
+                play(nextCell, cellsB, cellsA, winningMovesB, "O");
+                return;
+            }
+            for (int j = 0; j < 3; j++) {
+                if (cellsB[winningMovesB.get(i)[j] - 1] == -1) {
+                    countPlus++;
+                } else if (cellsB[winningMovesB.get(i)[j] - 1] == 0) {
+                    nextCell = winningMovesB.get(i)[j] - 1;
+                }
+            }
+            if ((countPlus == 2) && nextCell != -1) {
                 play(nextCell, cellsB, cellsA, winningMovesB, "O");
                 return;
             }
