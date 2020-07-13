@@ -1,9 +1,7 @@
 package com.example.ttt;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -14,7 +12,7 @@ import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
 
-    //declaring an array of button variabled instead of creating them one by one
+    //declaring an array of button variables instead of creating them one by one
     Button buttonNames[] = new Button[9];
     //declaring result textview
     TextView result;
