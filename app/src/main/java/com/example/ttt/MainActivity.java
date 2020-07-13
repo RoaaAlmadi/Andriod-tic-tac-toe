@@ -2,6 +2,7 @@ package com.example.ttt;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -119,15 +120,21 @@ public class MainActivity extends AppCompatActivity {
     }
     //resetting game to initial state
     private void resetGame() {
-        winningMovesA = (ArrayList<int[]>) winningMoves.clone();
-        winningMovesB = (ArrayList<int[]>) winningMoves.clone();
-        cellsA = cells.clone();
-        cellsB = cells.clone();
-        //setting back all squares (buttons) to their initial number values
-        for (int i = 0; i < buttonNames.length; i++) {
-            buttonNames[i].setText(String.valueOf(i + 1));
-            buttonNames[i].setTextColor(getResources().getColor(R.color.black));
-        }
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                winningMovesA = (ArrayList<int[]>) winningMoves.clone();
+                winningMovesB = (ArrayList<int[]>) winningMoves.clone();
+                cellsA = cells.clone();
+                cellsB = cells.clone();
+                //setting back all squares (buttons) to their initial number values
+                for (int i = 0; i < buttonNames.length; i++) {
+                    buttonNames[i].setText(String.valueOf(i + 1));
+                    buttonNames[i].setTextColor(getResources().getColor(R.color.black));
+                }
+            }
+        }, 4000);
     }
     /*check if the a move is winning move
        @Param cellId: the id of the button just tapped
