@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
     int[] cellsA = cells.clone();
     int[] cellsB = cells.clone();
 
-    //create two array of winning moves
+    //create the array of winning moves
     ArrayList<int[]> winningMoves = new ArrayList<>(Arrays.asList(
             new int[]{1, 2, 3},
             new int[]{4, 5, 6},
@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
             new int[]{1, 5, 9}
     ));
 
-    //creating an copy of winningMove array for each player to loop through an modify as the game progresses
+    //creating a copy of winningMove array for each player to loop through and modify as the game progresses
     ArrayList<int[]> winningMovesA = (ArrayList<int[]>) winningMoves.clone();
     ArrayList<int[]> winningMovesB = (ArrayList<int[]>) winningMoves.clone();
 
@@ -143,6 +143,7 @@ public class MainActivity extends AppCompatActivity {
                 if (player[movesToCheck[0] - 1] == 1 &&
                         player[movesToCheck[1] - 1] == 1 &&
                         player[movesToCheck[2] - 1] == 1) {
+                    winMovArr.remove(buttonMovesMap.get(cellId)[i]);
                     return true;
                 }
             } catch (IndexOutOfBoundsException e) {
@@ -170,7 +171,6 @@ public class MainActivity extends AppCompatActivity {
             }
             if (count == 2 && nextCell != -1) {
                 play(nextCell, cellsB, cellsA, winningMovesB, "O");
-                winningMovesB.remove(i);
                 return;
             }
         }
