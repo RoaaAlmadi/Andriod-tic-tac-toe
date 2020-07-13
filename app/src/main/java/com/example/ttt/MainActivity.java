@@ -135,7 +135,8 @@ public class MainActivity extends AppCompatActivity {
        @Param cellId: the id of the button just tapped
        @Param player: the player who just played
        @Param winMoveArr: the player's winning move array
-     It uses buttonMovesMap based on the button tapped to see which winning moves should be checked */
+     It uses buttonMovesMap based on the button tapped to see which winning moves should be checked and at the end
+     it will remove the matched move from the list, so that it won't be checked again; */
     protected boolean winningMove(int cellId, int[] player, ArrayList<int[]> winMovArr) {
         for (int i = 0; i < buttonMovesMap.get(cellId).length; i++) {
             try {
@@ -152,8 +153,7 @@ public class MainActivity extends AppCompatActivity {
         }
         return false;
     }
-    /*computer select which button should be selected for its move; first it look for the button which blocks user and at the end
-     it will remove the matched move from the list, so that it won't be checked again;
+    /*computer select which button should be selected for its move; first it look for the button which blocks user;
       if there is no need to block the user, it randomly selects an available square (button) to play
     */
     protected void computerPlays() {
