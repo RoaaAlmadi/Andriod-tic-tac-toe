@@ -149,6 +149,7 @@ public class MainActivity extends AppCompatActivity {
             int countMinus = 0;
             int countPlus = 0;
             int nextCell = -1;// initialize the next cell (button) to -1 as a flag
+            //first check if it can win with the next move
             for (int j = 0; j < 3; j++) {
                 if (cellsB[winningMovesB.get(i)[j] - 1] == 1) {
                     countMinus++;
@@ -160,6 +161,7 @@ public class MainActivity extends AppCompatActivity {
                 play(nextCell, cellsB, cellsA, winningMovesB, "O");
                 return;
             }
+            //then it checks if it should block the other player
             for (int j = 0; j < 3; j++) {
                 if (cellsB[winningMovesB.get(i)[j] - 1] == -1) {
                     countPlus++;
@@ -172,6 +174,7 @@ public class MainActivity extends AppCompatActivity {
                 return;
             }
         }
+        //finally, it will play a random square if there is no winning chance or no need to block the other player
         int randomButton = (new Random()).nextInt(9);
         while (cellsB[randomButton] == -1 || cellsB[randomButton] == 1) {
             randomButton = (new Random()).nextInt(9);
