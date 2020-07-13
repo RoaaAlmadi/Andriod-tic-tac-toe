@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         public void onAction() {
-            playerMove(button_2, "O");
+            playerMove(button_2, "O");                  
             isPlayer = true;
         }
 
