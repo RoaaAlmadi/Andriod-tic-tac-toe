@@ -118,24 +118,7 @@ public class MainActivity extends AppCompatActivity {
         }
         return true;
     }
-    //resetting game to initial state
-    private void resetGame() {
-        Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                winningMovesA = (ArrayList<int[]>) winningMoves.clone();
-                winningMovesB = (ArrayList<int[]>) winningMoves.clone();
-                cellsA = cells.clone();
-                cellsB = cells.clone();
-                //setting back all squares (buttons) to their initial number values
-                for (int i = 0; i < buttonNames.length; i++) {
-                    buttonNames[i].setText(String.valueOf(i + 1));
-                    buttonNames[i].setTextColor(getResources().getColor(R.color.black));
-                }
-            }
-        }, 4000);
-    }
+
     /*check if the a move is winning move
        @Param cellId: the id of the button just tapped
        @Param player: the player who just played
@@ -158,23 +141,24 @@ public class MainActivity extends AppCompatActivity {
         }
         return false;
     }
+
     /*computer select which button should be selected for its move; first it look for the button which blocks user;
-      if there is no need to block the user, it randomly selects an available square (button) to play
-    */
+      if there is no need to block the user, it randomly selects an available square (button) to play*/
     protected void computerPlays() {
         for (int i = 0; i < winningMovesB.size(); i++) {
-            int count = 0;
+            int countMinus = 0;
+            int countPlus = 0;
             int nextCell = -1;// initialize the next cell (button) to -1 as a flag
             for (int j = 0; j < 3; j++) {
-                if (cellsB[winningMovesB.get(i)[j] - 1] == -1) {
-                    count++;
+                if (cellsB[winningMovesB.get(i)[j] - 1] == 1) {
+                    countMinus++;
                 } else if (cellsB[winningMovesB.get(i)[j] - 1] == 0) {
                     nextCell = winningMovesB.get(i)[j] - 1;
-                } else if (cellsB[winningMovesB.get(i)[j] - 1] == 1) {
-                    break;
+                } else if (cellsB[winningMovesB.get(i)[j] - 1] == -1) {
+                    countPlus++;
                 }
             }
-            if (count == 2 && nextCell != -1) {
+            if ((countPlus == 2 || countMinus == 2) && nextCell != -1) {
                 play(nextCell, cellsB, cellsA, winningMovesB, "O");
                 return;
             }
@@ -184,6 +168,29 @@ public class MainActivity extends AppCompatActivity {
             randomButton = (new Random()).nextInt(9);
         }
         play(randomButton, cellsB, cellsA, winningMovesB, "O");
+    }
+
+    //resetting game to initial state
+    private void resetGame() {
+        for (int i = 0; i < buttonNames.length; i++) {
+            buttonNames[i].setEnabled(false);
+        }
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                winningMovesA = (ArrayList<int[]>) winningMoves.clone();
+                winningMovesB = (ArrayList<int[]>) winningMoves.clone();
+                cellsA = cells.clone();
+                cellsB = cells.clone();
+                //setting back all squares (buttons) to their initial number values
+                for (int i = 0; i < buttonNames.length; i++) {
+                    buttonNames[i].setText(String.valueOf(i + 1));
+                    buttonNames[i].setTextColor(getResources().getColor(R.color.black));
+                    buttonNames[i].setEnabled(true);
+                }
+            }
+        }, 4000);
     }
 
     //check if ther is any more squares (buttons) available to play
