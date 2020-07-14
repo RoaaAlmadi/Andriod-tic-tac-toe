@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
             buttonNames[i] = findViewById(buttonId);
             final int cellId = i;// getting the value of i to use in the inner class setOnClickListener(i can't be used, as it is not final)
             System.out.println("button create " + " " + i + " " + button + " " + id + " " + buttonNames[i]);
-            buttonNames[i].setOnClickListener(new View.OnClickListener() {
+            buttonNames[i].setOnClickListener(  new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     //checking if user wins the game or the game should be continued
