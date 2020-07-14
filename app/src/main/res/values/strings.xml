@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Tic Tac Toe</string>
+    <string name="alertTitle">Who Won?</string>
+    <string name="alertComputerWon">The computer won this time!</string>
+    <string name="alertYouWon">You won this time!</string>
+    <string name="alertConfirm">Close</string>
 </resources>

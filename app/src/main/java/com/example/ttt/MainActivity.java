@@ -1,6 +1,9 @@
 package com.example.ttt;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -14,7 +17,7 @@ import java.util.Random;
 public class MainActivity extends AppCompatActivity {
 
     //declaring an array of button variables instead of creating them one by one
-    Button buttonNames[] = new Button[9];
+    Button[] buttonNames = new Button[9];
     //declaring result textview
     TextView result;
 
@@ -107,6 +110,12 @@ public class MainActivity extends AppCompatActivity {
             if (winningMove(cellId, player, winMovArr)) {
                 String winner;
                 winner = (player == cellsA) ? "You" : "Computer";//change the winner name based on who wins
+                if (winner=="Computer") {
+                    whoWon(true);
+                } else {
+                    whoWon(false);
+                }
+
                 Toast.makeText(this, winner + " won!", Toast.LENGTH_SHORT).show();
                 resetGame();
                 return false;
@@ -184,8 +193,8 @@ public class MainActivity extends AppCompatActivity {
 
     //resetting game to initial state
     private void resetGame() {
-        for (int i = 0; i < buttonNames.length; i++) {
-            buttonNames[i].setEnabled(false);
+        for (Button buttonName : buttonNames) {
+            buttonName.setEnabled(false);
         }
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
@@ -212,5 +221,26 @@ public class MainActivity extends AppCompatActivity {
                 return true;
         }
         return false;
+    }
+
+    private void whoWon(boolean won) {
+        AlertDialog alertDialog = new AlertDialog.Builder(MainActivity.this).create();
+        alertDialog.setTitle(R.string.alertTitle);
+        if (won) {
+            alertDialog.setMessage(getResources().getString(R.string.alertComputerWon));
+        } else {
+            alertDialog.setMessage(getResources().getString(R.string.alertYouWon));
+        }
+        String ok = getResources().getString(R.string.alertConfirm);
+
+        alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, ok ,
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+
+
+        alertDialog.show();
     }
 }
