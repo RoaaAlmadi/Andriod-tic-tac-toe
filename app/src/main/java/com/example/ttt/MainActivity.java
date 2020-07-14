@@ -14,6 +14,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
 
+//TODO Replace depreciated functions
+
 public class MainActivity extends AppCompatActivity {
 
     //declaring an array of button variables instead of creating them one by one
